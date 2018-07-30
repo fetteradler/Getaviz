@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/bank/input/input.iml" filepath="$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/bank/input/input.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/nested_package_test/input/input1.iml" filepath="$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/nested_package_test/input/input1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/android_phone/input/input2.iml" filepath="$PROJECT_DIR$/generator/org.svis.generator.tests/testdata/android_phone/input/input2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/RD freemind/model/model.iml" filepath="$PROJECT_DIR$/ui/data/RD freemind/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/Plant freemind/model/src/model1.iml" filepath="$PROJECT_DIR$/ui/data/Plant freemind/model/src/model1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/Plant freemind/model/model10.iml" filepath="$PROJECT_DIR$/ui/data/Plant freemind/model/model10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/RD findbugs/model/model11.iml" filepath="$PROJECT_DIR$/ui/data/RD findbugs/model/model11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/RD bank/model/model12.iml" filepath="$PROJECT_DIR$/ui/data/RD bank/model/model12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City panels freemind/model/src/model2.iml" filepath="$PROJECT_DIR$/ui/data/City panels freemind/model/src/model2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City original freemind/model/model3.iml" filepath="$PROJECT_DIR$/ui/data/City original freemind/model/model3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City floor findbugs/model/model4.iml" filepath="$PROJECT_DIR$/ui/data/City floor findbugs/model/model4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City bricks freemind/model/src/model5.iml" filepath="$PROJECT_DIR$/ui/data/City bricks freemind/model/src/model5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City panels freemind/model/model6.iml" filepath="$PROJECT_DIR$/ui/data/City panels freemind/model/model6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City bricks freemind/model/model7.iml" filepath="$PROJECT_DIR$/ui/data/City bricks freemind/model/model7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/City original freemind/model/src/model8.iml" filepath="$PROJECT_DIR$/ui/data/City original freemind/model/src/model8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ui/data/RD freemind/model/src/model9.iml" filepath="$PROJECT_DIR$/ui/data/RD freemind/model/src/model9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.generator/org.svis.generator.iml" filepath="$PROJECT_DIR$/generator/org.svis.generator/org.svis.generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.lib.database/org.svis.lib.database.iml" filepath="$PROJECT_DIR$/generator/org.svis.lib.database/org.svis.lib.database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.lib.repository/org.svis.lib.repository.iml" filepath="$PROJECT_DIR$/generator/org.svis.lib.repository/org.svis.lib.repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.xtext.dynamix/org.svis.xtext.dynamix.iml" filepath="$PROJECT_DIR$/generator/org.svis.xtext.dynamix/org.svis.xtext.dynamix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.xtext.famix/org.svis.xtext.famix.iml" filepath="$PROJECT_DIR$/generator/org.svis.xtext.famix/org.svis.xtext.famix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/org.svis.xtext.hismo/org.svis.xtext.hismo.iml" filepath="$PROJECT_DIR$/generator/org.svis.xtext.hismo/org.svis.xtext.hismo.iml" />
+    </modules>
+  </component>
+</project>

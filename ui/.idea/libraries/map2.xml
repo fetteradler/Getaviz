@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="map2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/Plant freemind/model/src/plugins/map/JMapViewer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/Plant freemind/model/src/plugins/map/JMapViewer_src.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

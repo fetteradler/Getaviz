@@ -12,6 +12,10 @@ var relationConnectorController = function(){
 	var loadedDistances = new Map();
 
 	var activated = false;
+
+	//Vererbung
+	var superClasses = new Array();
+	var subClasses = new Array();
 	
 	
 	//config parameters	
@@ -127,10 +131,14 @@ var relationConnectorController = function(){
 			case "Class":
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
 				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
+				superClasses = superClasses.concat(sourceEntity.superTypes);
+				subClasses = superClasses.concat(sourceEntity.subTypes);
 				break;
 			case  "ParameterizableClass":
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
 				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
+                superClasses = superClasses.concat(sourceEntity.superTypes);
+                subClasses = superClasses.concat(sourceEntity.subTypes);
 				break;			
 			case "Attribute":
 				relatedEntities = sourceEntity.accessedBy;
@@ -229,8 +237,31 @@ var relationConnectorController = function(){
 		if( targetPosition === null ){
 			return;
 		}
-		
-		var connectorColor = "1 0 0";
+
+        var connectorColor = null;
+
+		var hasDirection = false;
+
+		if(entity.type === "Method") {
+			if(relatedEntity.type === "Method") {
+				connectorColor = "0 1 0";
+				hasDirection = true;
+			} else {
+                connectorColor = "0 0 1";
+			}
+		} else if(entity.type === "Attribute") {
+            connectorColor = "0 0 1";
+		} else if (entity.type === "Class") {
+			if (superClasses.contains(relatedEntity)) {
+                connectorColor = "0 1 1";
+			} else if (subClasses.contains(relatedEntity)) {
+                connectorColor = "1 0 1";
+			}
+		} else {
+		    //hasDirection = true;
+            connectorColor = "1 0 0";
+        }
+
 		var connectorSize = 0.5;
 		
 		//config
@@ -241,12 +272,20 @@ var relationConnectorController = function(){
 		
 		//create element
 		var transform = document.createElement('Transform');
-		
-		transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize));
+
+
+        if(hasDirection) {
+        }
+           /* transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize))
+        } else {*/
+            transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize));
+        //}
 		
 		//config
 		if(controllerConfig.createEndpoints){
-			transform.appendChild(createEndPoint(sourcePosition, targetPosition, "0 0 0", connectorSize * 2));
+
+                transform.appendChild(createEndPoint(sourcePosition, targetPosition, "0 0 0", connectorSize * 2));
+
 		}
 					
 		return transform;
@@ -640,6 +679,58 @@ var relationConnectorController = function(){
 			
 		return transform;
 	}
+
+	function createArrow(source, target, color, size) {
+        //calculate attributes
+
+        var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
+        var translation = [];
+
+        translation[0] = source[0]+(target[0]-source[0])/2.0;
+        translation[1] = source[1]+(target[1]-source[1])/2.0;
+        translation[2] = source[2]+(target[2]-source[2])/2.0;
+
+        var scale = [];
+        scale[0] = size;
+        scale[1] = betrag;
+        scale[2] = size;
+
+        var rotation = [];
+        rotation[0] = (target[2]-source[2]);
+        rotation[1] = 0;
+        rotation[2] = (-1.0)*(target[0]-source[0]);
+        rotation[3] = Math.acos((target[1] - source[1])/(Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) )));
+
+        //create element
+        var transform = document.createElement('Transform');
+
+        transform.setAttribute("translation", translation.toString());
+        transform.setAttribute("scale", scale.toString());
+        transform.setAttribute("rotation", rotation.toString());
+
+        var shape = document.createElement('Shape');
+        transform.appendChild(shape);
+
+        var appearance = document.createElement('Appearance');
+        shape.appendChild(appearance);
+        var material = document.createElement('Material');
+        material.setAttribute("diffuseColor", color);
+        appearance.appendChild(material);
+
+
+        var cone = document.createElement('Cone');
+        cone.setAttribute("bottomRadius", "1.5");
+        cone.setAttribute("height", "1");
+
+       /* var cylinder = document.createElement('Cylinder');
+        cylinder.setAttribute("radius", "0.25");
+        cylinder.setAttribute("height", "1");
+        cylinder.appendChild(cone);
+        shape.appendChild(cylinder);*/
+        shape.appendChild(cone);
+
+        return transform;
+    }
 
 	
 

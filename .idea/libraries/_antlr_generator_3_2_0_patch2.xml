@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name=".antlr-generator-3.2.0-patch2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/generator/org.svis.xtext.rd/.antlr-generator-3.2.0-patch.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jhall2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ui/data/City original freemind/model/src/plugins/help/jhall.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="svg1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-xml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/pdf-transcoder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-extension.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-codec.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/js.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-bridge.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-parser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-gvt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-transcoder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-script.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-css.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-svg-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-svggen.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-awt-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/xml-apis-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/batik-anim.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/svg/xerces_2_5_0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

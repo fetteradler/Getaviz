@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jabber1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/crimson-1.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/jaxp-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/jakarta-oro.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/log4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/RD freemind/model/src/plugins/collaboration/jabber/muse.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

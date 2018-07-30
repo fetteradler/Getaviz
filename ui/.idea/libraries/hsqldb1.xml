@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hsqldb1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/City bricks freemind/model/src/plugins/collaboration/database/hsqldb.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

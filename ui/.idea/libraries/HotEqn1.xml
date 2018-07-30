@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HotEqn1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/City panels freemind/model/src/plugins/latex/HotEqn.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

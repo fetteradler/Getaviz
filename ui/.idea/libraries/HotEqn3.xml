@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HotEqn3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data/City bricks freemind/model/src/plugins/latex/HotEqn.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
