@@ -2,6 +2,11 @@ var relationConnectorController = function(){
 	
 	var sourceEntity = null;
 	var relatedEntities = new Array();
+
+	// entities the source calls
+	var relatedCallsEntities = new Array();
+	//entities the source is called by
+    var relatedCalledByEntities = new Array();
 	
 	var connectors = new Array();
 	var relations = new Array();
@@ -132,7 +137,7 @@ var relationConnectorController = function(){
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
 				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
 				superClasses = superClasses.concat(sourceEntity.superTypes);
-				subClasses = superClasses.concat(sourceEntity.subTypes);
+				subClasses = subClasses.concat(sourceEntity.subTypes);
 				break;
 			case  "ParameterizableClass":
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
@@ -146,7 +151,10 @@ var relationConnectorController = function(){
 			case "Method":
 				relatedEntities = sourceEntity.accesses;
 				relatedEntities = relatedEntities.concat( sourceEntity.calls );
-				relatedEntities = relatedEntities.concat( sourceEntity.calledBy );			
+				relatedEntities = relatedEntities.concat( sourceEntity.calledBy );
+
+                relatedCallsEntities = sourceEntity.calls;
+                relatedCalledByEntities = sourceEntity.calledBy;
 				break;
 			
 			default: 				
@@ -182,7 +190,7 @@ var relationConnectorController = function(){
 					return;
 				}
 			}
-								
+
 			//create scene element
 			var connector = createConnector(sourceEntity, relatedEntity);
 			
@@ -273,13 +281,31 @@ var relationConnectorController = function(){
 		//create element
 		var transform = document.createElement('Transform');
 
+		var numberCalls = 0;
+        for(var i = 0; i < relatedEntities.length; i++) {
+            if (relatedEntities[i] == relatedEntity) {
+                numberCalls++;
+            }
+        }
 
         if(hasDirection) {
-        }
-           /* transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize))
-        } else {*/
+        	//
+            for(var i = 0; i < relatedCallsEntities.length; i++) {
+                if (relatedCallsEntities[i] == relatedEntity) {
+                    transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+                    break;
+                }
+            }
+            for(var i = 0; i < relatedCalledByEntities.length; i++) {
+                if (relatedCalledByEntities[i] == relatedEntity) {
+                    transform.appendChild(createArrow(targetPosition, sourcePosition, connectorColor, connectorSize, numberCalls));
+                    break;
+                }
+            }
+        } else {
+
             transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize));
-        //}
+        }
 		
 		//config
 		if(controllerConfig.createEndpoints){
@@ -654,8 +680,8 @@ var relationConnectorController = function(){
 		rotation[1] = 0;
 		rotation[2] = (-1.0)*(target[0]-source[0]);
 		rotation[3] = Math.acos((target[1] - source[1])/(Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) )));
-					
-		//create element
+
+        //create element
 		var transform = document.createElement('Transform');
 				
 		transform.setAttribute("translation", translation.toString());
@@ -669,18 +695,18 @@ var relationConnectorController = function(){
 		shape.appendChild(appearance);
 		var material = document.createElement('Material');	
 		material.setAttribute("diffuseColor", color);
-		appearance.appendChild(material);	
-		
+		appearance.appendChild(material);
 				
 		var cylinder = document.createElement('Cylinder');
 		cylinder.setAttribute("radius", "0.25");
 		cylinder.setAttribute("height", "1");
+
 		shape.appendChild(cylinder);
-			
+
 		return transform;
 	}
 
-	function createArrow(source, target, color, size) {
+	function createArrow(source, target, color, size, numbercalls) {
         //calculate attributes
 
         var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
@@ -717,17 +743,30 @@ var relationConnectorController = function(){
         material.setAttribute("diffuseColor", color);
         appearance.appendChild(material);
 
+        var shape2 = document.createElement('Shape');
+        transform.appendChild(shape2);
+        var appearance2 = document.createElement('Appearance');
+        shape2.appendChild(appearance2);
+        var material2 = document.createElement('Material');
+        material2.setAttribute("diffuseColor", color);
+        appearance2.appendChild(material2);
 
-        var cone = document.createElement('Cone');
-        cone.setAttribute("bottomRadius", "1.5");
-        cone.setAttribute("height", "1");
-
-       /* var cylinder = document.createElement('Cylinder');
+        var cylinder = document.createElement('Cylinder');
         cylinder.setAttribute("radius", "0.25");
         cylinder.setAttribute("height", "1");
-        cylinder.appendChild(cone);
-        shape.appendChild(cylinder);*/
-        shape.appendChild(cone);
+
+        shape.appendChild(cylinder);
+
+        var calls = 1 + (numbercalls * 0.1);
+
+        var cone = document.createElement('Cone');
+        cone.setAttribute("bottomRadius", calls);
+        cone.setAttribute("height", "0.1");
+
+
+        shape2.appendChild(cone);
+
+        
 
         return transform;
     }
