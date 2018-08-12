@@ -1,5 +1,7 @@
 var model = (function() {
 
+	var extendedAccess = false;
+
 	//states
 	var states = {
 		selected 		: { name: "selected" },
@@ -78,8 +80,37 @@ var model = (function() {
 					} else {
 						entity.calledBy = [];
 					}
-					if(element.accesses){						
-						entity.accesses = element.accesses.split(",");
+					if(element.accesses){
+
+                        if(typeof element.accesses =='object')
+                        {
+                            entity.accesses = [];
+
+                            /*for (var i = 0; i < entity.accesses.length;; i++){
+                                var obj = entity.accesses[i];
+                                var accessesArray = [];
+                                for (var key in obj){
+                                    var value = obj[key];
+                                    accessesArray.push(value);
+                                }
+                                entity.accesses.push(accessesArray);
+                            }*/
+
+                            for(var i = 0; i < element.accesses.length; i++) {
+                                var obj = element.accesses[i];
+                                var accessesArray = [];
+                                accessesArray.push(obj["id"].trim());
+                                accessesArray.push(obj["inCondition"]);
+                                accessesArray.push(obj["inLoop"]);
+
+                                //entity.accesses.push(obj.id);
+                                entity.accesses.push(accessesArray);
+                            }
+                        }
+                        else
+                        {
+                            entity.accesses = element.accesses.split(",");
+                        }
 					} else {
 						entity.accesses = [];
 					}
@@ -182,14 +213,31 @@ var model = (function() {
 					entity.calledBy = calledBy;
 					
 					var accesses = new Array();
-					entity.accesses.forEach(function(accessesId){
-						var relatedEntity = entitiesById.get(accessesId.trim());
-						if(relatedEntity !== undefined){
-							accesses.push(relatedEntity);
-						}
-					});
-					entity.accesses = accesses;
-					
+					var extendedAccesses = new Array();
+
+                        entity.accesses.forEach(function (accessesId) {
+                            if(typeof accessesId =='object') {
+                                //entity.accesses = [];
+                                var relatedEntity = entitiesById.get(accessesId[0]);
+                                if (relatedEntity !== undefined) {
+                                    //array
+                                    accesses.push(relatedEntity);
+                                    var accessesEntry = [];
+                                    accessesEntry.push(relatedEntity);
+                                    accessesEntry.push(accessesId[1]);
+                                    accessesEntry.push(accessesId[2]);
+
+                                    extendedAccesses.push(accessesEntry);
+                                }
+                                entity.extendedAccesses = extendedAccesses;
+                            } else {
+                                var relatedEntity = entitiesById.get(accessesId.trim());
+                                if (relatedEntity !== undefined) {
+                                    accesses.push(relatedEntity);
+                                }
+                            }
+                        });
+                        entity.accesses = accesses;
 					break;				
 				
 				default: 				

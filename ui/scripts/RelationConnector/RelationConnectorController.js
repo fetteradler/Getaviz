@@ -7,6 +7,12 @@ var relationConnectorController = function(){
 	var relatedCallsEntities = new Array();
 	//entities the source is called by
     var relatedCalledByEntities = new Array();
+
+    //Conditions/Loops
+	var accessWithArray = new Array();
+	var hasMultipleElements = false;
+    var inCondition = false;
+    var inLoop = false;
 	
 	var connectors = new Array();
 	var relations = new Array();
@@ -149,7 +155,17 @@ var relationConnectorController = function(){
 				relatedEntities = sourceEntity.accessedBy;
 				break;
 			case "Method":
-				relatedEntities = sourceEntity.accesses;
+			   /* if(sourceEntity.extendedAccesses) {
+                    accessWithArray = sourceEntity.extendedAccesses;
+                    //relatedEntities = sourceEntity.accesses;
+                    var accessesEntities = [];
+                    for(var i = 0; i < accessWithArray.length; i++) {
+                        accessesEntities.push(accessWithArray[0]);
+                    }
+                    relatedEntities = accessesEntities;
+                } else {*/
+                    relatedEntities = sourceEntity.accesses;
+                //}
 				relatedEntities = relatedEntities.concat( sourceEntity.calls );
 				relatedEntities = relatedEntities.concat( sourceEntity.calledBy );
 
@@ -179,6 +195,25 @@ var relationConnectorController = function(){
 		var relatedEntitesMap = new Map();
 						
 		relatedEntities.forEach(function(relatedEntity){
+
+            inCondition = false;
+            inLoop = false;
+
+			if(sourceEntity.extendedAccesses) {
+			    var extAccess = sourceEntity.extendedAccesses;
+			    for(var i = 0; i < extAccess.length; i++) {
+                    if (extAccess[i][0] == relatedEntity) {
+                        inCondition = true;
+                        if (extAccess[i][1]) {
+                            inCondition = true;
+                        }
+                        if (extAccess[i][2]) {
+                            inLoop = true;
+                        }
+                    }
+                }
+            }
+
 			if(relatedEntitesMap.has(relatedEntity)){
 				events.log.info.publish({ text: "connector - onRelationsChanged - multiple relation"});
 				return;
@@ -219,12 +254,14 @@ var relationConnectorController = function(){
 			relations.push(relation);
 			
 			relatedEntitesMap.set(relatedEntity, relatedEntity);
+
+            hasMultipleElements = false;
 		});
 		
 		
 		if(relatedEntitesMap.size != 0){
 		
-			var applicationEvent = {			
+			var applicationEvent = {
 				sender: relationConnectorController,
 				entities: relations
 			};
@@ -249,13 +286,29 @@ var relationConnectorController = function(){
         var connectorColor = null;
 
 		var hasDirection = false;
+		//var inCondition = false;
+		//var inLoop = false;
 
 		if(entity.type === "Method") {
+
+            //Check type of related entity
 			if(relatedEntity.type === "Method") {
-				connectorColor = "0 1 0";
+				if(inCondition) {
+					connectorColor = "078 238 148";
+				} else if (inLoop) {
+					connectorColor = "046 139 087";
+				} else {
+                    connectorColor = "0 1 0";
+                }
 				hasDirection = true;
 			} else {
-                connectorColor = "0 0 1";
+                if(inCondition) {
+                    connectorColor = "000 229 238";
+                } else if (inLoop) {
+                    connectorColor = "125 038 205";
+                } else {
+                    connectorColor = "0 0 1";
+                }
 			}
 		} else if(entity.type === "Attribute") {
             connectorColor = "0 0 1";
@@ -304,7 +357,7 @@ var relationConnectorController = function(){
             }
         } else {
 
-            transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize));
+            transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
         }
 		
 		//config
@@ -660,7 +713,7 @@ var relationConnectorController = function(){
 	
 	
 	
-	function createLine(source, target, color, size){
+	function createLine(source, target, color, size, numberCalls){
 		//calculate attributes
 		
 		var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
@@ -696,9 +749,11 @@ var relationConnectorController = function(){
 		var material = document.createElement('Material');	
 		material.setAttribute("diffuseColor", color);
 		appearance.appendChild(material);
+
+		var numberOfCalls = 0.15 + (0.1 * numberCalls);
 				
 		var cylinder = document.createElement('Cylinder');
-		cylinder.setAttribute("radius", "0.25");
+		cylinder.setAttribute("radius", numberOfCalls);
 		cylinder.setAttribute("height", "1");
 
 		shape.appendChild(cylinder);
@@ -751,13 +806,14 @@ var relationConnectorController = function(){
         material2.setAttribute("diffuseColor", color);
         appearance2.appendChild(material2);
 
+        //var callsLine = 0.15 + (0.1 * numbercalls);
+        var calls = 1 + (numbercalls * 0.1);
+
         var cylinder = document.createElement('Cylinder');
         cylinder.setAttribute("radius", "0.25");
         cylinder.setAttribute("height", "1");
 
         shape.appendChild(cylinder);
-
-        var calls = 1 + (numbercalls * 0.1);
 
         var cone = document.createElement('Cone');
         cone.setAttribute("bottomRadius", calls);
@@ -766,7 +822,24 @@ var relationConnectorController = function(){
 
         shape2.appendChild(cone);
 
-        
+        /*var fontStyle = document.createElement("FontStyle");
+        fontStyle.setAttribute("size", "0.1");
+
+        var text = document.createElement("Text");
+        //text.setAttribute("fontStyle", fontStyle);
+        text.setAttribute("string", numbercalls);
+        //cone.appendChild(text);
+
+        //create incidence of calls
+        var shape3 = document.createElement('Shape');
+        transform.appendChild(shape3);
+        var appearance3 = document.createElement('Appearance');
+        shape3.appendChild(appearance3);
+        var material3 = document.createElement('Material');
+        material3.setAttribute("diffuseColor", "1 0 0");
+        appearance3.appendChild(material3);
+
+        shape3.appendChild(text);*/
 
         return transform;
     }
