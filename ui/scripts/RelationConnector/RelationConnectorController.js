@@ -142,30 +142,22 @@ var relationConnectorController = function(){
 			case "Class":
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
 				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
-				superClasses = superClasses.concat(sourceEntity.superTypes);
-				subClasses = subClasses.concat(sourceEntity.subTypes);
+
+				superClasses = sourceEntity.superTypes;
+				subClasses = sourceEntity.subTypes;
 				break;
 			case  "ParameterizableClass":
 				relatedEntities = relatedEntities.concat(sourceEntity.superTypes);
 				relatedEntities = relatedEntities.concat(sourceEntity.subTypes);
-                superClasses = superClasses.concat(sourceEntity.superTypes);
-                subClasses = superClasses.concat(sourceEntity.subTypes);
+
+                superClasses = sourceEntity.superTypes;
+                subClasses = sourceEntity.subTypes;
 				break;			
 			case "Attribute":
 				relatedEntities = sourceEntity.accessedBy;
 				break;
 			case "Method":
-			   /* if(sourceEntity.extendedAccesses) {
-                    accessWithArray = sourceEntity.extendedAccesses;
-                    //relatedEntities = sourceEntity.accesses;
-                    var accessesEntities = [];
-                    for(var i = 0; i < accessWithArray.length; i++) {
-                        accessesEntities.push(accessWithArray[0]);
-                    }
-                    relatedEntities = accessesEntities;
-                } else {*/
-                    relatedEntities = sourceEntity.accesses;
-                //}
+				relatedEntities = sourceEntity.accesses;
 				relatedEntities = relatedEntities.concat( sourceEntity.calls );
 				relatedEntities = relatedEntities.concat( sourceEntity.calledBy );
 
@@ -203,11 +195,39 @@ var relationConnectorController = function(){
 			    var extAccess = sourceEntity.extendedAccesses;
 			    for(var i = 0; i < extAccess.length; i++) {
                     if (extAccess[i][0] == relatedEntity) {
-                        inCondition = true;
+                        //inCondition = true;
                         if (extAccess[i][1]) {
                             inCondition = true;
                         }
                         if (extAccess[i][2]) {
+                            inLoop = true;
+                        }
+                    }
+                }
+            }
+
+            if(sourceEntity.extendedCalls) {
+                var extCall = sourceEntity.extendedCalls;
+                for(var i = 0; i < extCall.length; i++) {
+                    if (extCall[i][0] == relatedEntity) {
+                        if (extCall[i][1]) {
+                            inCondition = true;
+                        }
+                        if (extCall[i][2]) {
+                            inLoop = true;
+                        }
+                    }
+                }
+            }
+
+            if(sourceEntity.extendedCalledBy) {
+                var extCallBy = sourceEntity.extendedCalledBy;
+                for(var i = 0; i < extCallBy.length; i++) {
+                    if (extCallBy[i][0] == relatedEntity) {
+                        if (extCallBy[i][1]) {
+                            inCondition = true;
+                        }
+                        if (extCallBy[i][2]) {
                             inLoop = true;
                         }
                     }
@@ -286,41 +306,62 @@ var relationConnectorController = function(){
         var connectorColor = null;
 
 		var hasDirection = false;
+
+		var hasCondition = false;
+
+		var switchClassOrMethod = 0;
 		//var inCondition = false;
 		//var inLoop = false;
 
 		if(entity.type === "Method") {
 
+            switchClassOrMethod = 1;
             //Check type of related entity
 			if(relatedEntity.type === "Method") {
 				if(inCondition) {
-					connectorColor = "078 238 148";
+					hasCondition = true;
+					connectorColor = "#ADFF2F";
 				} else if (inLoop) {
-					connectorColor = "046 139 087";
+                    hasCondition = true;
+					connectorColor = "#006400";
 				} else {
-                    connectorColor = "0 1 0";
+                    connectorColor = "#00FF00";
                 }
 				hasDirection = true;
 			} else {
                 if(inCondition) {
-                    connectorColor = "000 229 238";
+                	hasCondition = true;
+                    connectorColor = "#FF7256";
                 } else if (inLoop) {
-                    connectorColor = "125 038 205";
+                    hasCondition = true;
+                    connectorColor = "#8B0000";
                 } else {
-                    connectorColor = "0 0 1";
+                   // connectorColor = "0 0 1";
+                    connectorColor = "#FF0000";
                 }
 			}
 		} else if(entity.type === "Attribute") {
-            connectorColor = "0 0 1";
+            if(inCondition) {
+                hasCondition = true;
+                connectorColor = "#FF7256";
+            } else if (inLoop) {
+                hasCondition = true;
+                connectorColor = "#8B0000";
+            } else {
+                // connectorColor = "0 0 1";
+                connectorColor = "#FF0000";
+            }
 		} else if (entity.type === "Class") {
-			if (superClasses.contains(relatedEntity)) {
-                connectorColor = "0 1 1";
-			} else if (subClasses.contains(relatedEntity)) {
-                connectorColor = "1 0 1";
-			}
+            switchClassOrMethod = 2;
+            hasDirection = true;
+			//if (superClasses.contains(relatedEntity)) {
+                connectorColor = "#FFD700";
+			/*} else if (subClasses.contains(relatedEntity)) {
+                connectorColor = "#FFD700";
+			}*/
 		} else {
-		    //hasDirection = true;
-            connectorColor = "1 0 0";
+		    hasDirection = true;
+            connectorColor = "#FF1493";
         }
 
 		var connectorSize = 0.5;
@@ -343,21 +384,45 @@ var relationConnectorController = function(){
 
         if(hasDirection) {
         	//
-            for(var i = 0; i < relatedCallsEntities.length; i++) {
-                if (relatedCallsEntities[i] == relatedEntity) {
-                    transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+			switch (switchClassOrMethod) {
+				case 1:
+                    for(var i = 0; i < relatedCallsEntities.length; i++) {
+                        if (relatedCallsEntities[i] == relatedEntity) {
+                            transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+                            break;
+                        }
+                    }
+                    for(var i = 0; i < relatedCalledByEntities.length; i++) {
+                        if (relatedCalledByEntities[i] == relatedEntity) {
+                            transform.appendChild(createArrow(targetPosition, sourcePosition, connectorColor, connectorSize, numberCalls));
+                            break;
+                        }
+                    }
                     break;
-                }
-            }
-            for(var i = 0; i < relatedCalledByEntities.length; i++) {
-                if (relatedCalledByEntities[i] == relatedEntity) {
-                    transform.appendChild(createArrow(targetPosition, sourcePosition, connectorColor, connectorSize, numberCalls));
+
+				case 2:
+                    for (var i = 0; i < superClasses.length; i++) {
+                        if (superClasses[i] == relatedEntity) {
+                            transform.appendChild(createArrow(sourcePosition, targetPosition, connectorColor, connectorSize, 1));
+                        }
+                    }
+                    for (var i = 0; i < subClasses.length; i++) {
+                        if (subClasses[i] == relatedEntity) {
+                            transform.appendChild(createArrow(targetPosition, sourcePosition, connectorColor, connectorSize, 1));
+                        }
+                    }
                     break;
-                }
+
+				default :
+					break;
             }
         } else {
 
-            transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+        	if(hasCondition) {
+                transform.appendChild(createConditionLine(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+			} else {
+                transform.appendChild(createLine(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
+            }
         }
 		
 		//config
@@ -760,6 +825,55 @@ var relationConnectorController = function(){
 
 		return transform;
 	}
+
+    function createConditionLine(source, target, color, size, numberCalls){
+        //calculate attributes
+
+        var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
+        var translation = [];
+
+        translation[0] = source[0]+(target[0]-source[0])/2.0;
+        translation[1] = source[1]+(target[1]-source[1])/2.0;
+        translation[2] = source[2]+(target[2]-source[2])/2.0;
+
+        var scale = [];
+        scale[0] = size;
+        scale[1] = betrag;
+        scale[2] = size;
+
+        var rotation = [];
+        rotation[0] = (target[2]-source[2]);
+        rotation[1] = 0;
+        rotation[2] = (-1.0)*(target[0]-source[0]);
+        rotation[3] = Math.acos((target[1] - source[1])/(Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) )));
+
+        //create element
+        var transform = document.createElement('Transform');
+
+        transform.setAttribute("translation", translation.toString());
+        transform.setAttribute("scale", scale.toString());
+        transform.setAttribute("rotation", rotation.toString());
+
+        var shape = document.createElement('Shape');
+        transform.appendChild(shape);
+
+        var appearance = document.createElement('Appearance');
+        shape.appendChild(appearance);
+        var material = document.createElement('Material');
+        material.setAttribute("diffuseColor", color);
+        appearance.appendChild(material);
+
+        var numberOfCalls = 0.15 + (0.1 * numberCalls);
+
+        var obj = document.createElement('Box');
+        obj.setAttribute("size", "0.25 1 0.25");
+       // obj.setAttribute("radius", numberOfCalls);
+       // obj.setAttribute("height", "1");
+
+        shape.appendChild(obj);
+
+        return transform;
+    }
 
 	function createArrow(source, target, color, size, numbercalls) {
         //calculate attributes

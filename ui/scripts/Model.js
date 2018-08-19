@@ -71,12 +71,42 @@ var model = (function() {
 					entity.qualifiedName = entity.qualifiedName.trim();
 					
 					if(element.calls){
-						entity.calls = element.calls.split(",");
+                        if(typeof element.calls =='object')
+                        {
+                            entity.calls = [];
+
+                            for(var i = 0; i < element.calls.length; i++) {
+                                var obj = element.calls[i];
+                                var callsArray = [];
+                                callsArray.push(obj["id"].trim());
+                                callsArray.push(obj["inCondition"]);
+                                callsArray.push(obj["inLoop"]);
+
+                                entity.calls.push(callsArray);
+                            }
+                        } else {
+                            entity.calls = element.calls.split(",");
+                        }
 					} else {
 						entity.calls = [];
 					}
 					if(element.calledBy){
-						entity.calledBy = element.calledBy.split(",");
+                        if(typeof element.calledBy =='object')
+                        {
+                            entity.calledBy = [];
+
+                            for(var i = 0; i < element.calledBy.length; i++) {
+                                var obj = element.calledBy[i];
+                                var calledByArray = [];
+                                calledByArray.push(obj["id"].trim());
+                                calledByArray.push(obj["inCondition"]);
+                                calledByArray.push(obj["inLoop"]);
+
+                                entity.calledBy.push(calledByArray);
+                            }
+                        } else {
+                            entity.calledBy = element.calledBy.split(",");
+                        }
 					} else {
 						entity.calledBy = [];
 					}
@@ -86,16 +116,6 @@ var model = (function() {
                         {
                             entity.accesses = [];
 
-                            /*for (var i = 0; i < entity.accesses.length;; i++){
-                                var obj = entity.accesses[i];
-                                var accessesArray = [];
-                                for (var key in obj){
-                                    var value = obj[key];
-                                    accessesArray.push(value);
-                                }
-                                entity.accesses.push(accessesArray);
-                            }*/
-
                             for(var i = 0; i < element.accesses.length; i++) {
                                 var obj = element.accesses[i];
                                 var accessesArray = [];
@@ -103,7 +123,6 @@ var model = (function() {
                                 accessesArray.push(obj["inCondition"]);
                                 accessesArray.push(obj["inLoop"]);
 
-                                //entity.accesses.push(obj.id);
                                 entity.accesses.push(accessesArray);
                             }
                         }
@@ -195,20 +214,56 @@ var model = (function() {
 				
 				case "Method":
 					var calls = new Array();
+					var extendedCalls = new Array();
+
 					entity.calls.forEach(function(callsId){
-						var relatedEntity = entitiesById.get(callsId.trim());
-						if(relatedEntity !== undefined){
-							calls.push(relatedEntity);
-						}
+                        if(typeof callsId =='object') {
+                            //entity.accesses = [];
+                            var relatedEntity = entitiesById.get(callsId[0]);
+                            if (relatedEntity !== undefined) {
+                                //array
+                                calls.push(relatedEntity);
+                                var callsEntry = [];
+                                callsEntry.push(relatedEntity);
+                                callsEntry.push(callsId[1]);
+                                callsEntry.push(callsId[2]);
+
+                                extendedCalls.push(callsEntry);
+                            }
+                            entity.extendedCalls = extendedCalls;
+                        } else {
+                            var relatedEntity = entitiesById.get(callsId.trim());
+                            if (relatedEntity !== undefined) {
+                                calls.push(relatedEntity);
+                            }
+                        }
 					});
 					entity.calls = calls;
 					
 					var calledBy = new Array();
+					var extendedCalledBy = new Array();
+
 					entity.calledBy.forEach(function(calledById){
-						var relatedEntity = entitiesById.get(calledById.trim());
-						if(relatedEntity !== undefined){
-							calledBy.push(relatedEntity);
-						}
+                        if(typeof calledById =='object') {
+                            //entity.accesses = [];
+                            var relatedEntity = entitiesById.get(calledById[0]);
+                            if (relatedEntity !== undefined) {
+                                //array
+                                calledBy.push(relatedEntity);
+                                var calledByEntry = [];
+                                calledByEntry.push(relatedEntity);
+                                calledByEntry.push(calledById[1]);
+                                calledByEntry.push(calledById[2]);
+
+                                extendedCalledBy.push(calledByEntry);
+                            }
+                            entity.extendedCalledBy = extendedCalledBy;
+                        } else {
+                            var relatedEntity = entitiesById.get(calledById.trim());
+                            if (relatedEntity !== undefined) {
+                                calledBy.push(relatedEntity);
+                            }
+                        }
 					});
 					entity.calledBy = calledBy;
 					

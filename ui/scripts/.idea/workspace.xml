@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js" line="833" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js" line="947" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91c317d6-fce6-4276-b7e0-1923a67a0863" name="Default Changelist" comment="">
@@ -53,25 +53,25 @@
     <session id="-275328505">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.12" value="2" />
-          <entry key="project.open.time.13" value="3" />
-          <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="3" />
+          <entry key="project.open.time.13" value="4" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.open.time.15" value="4" />
           <entry key="project.open.time.24" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="4052" />
-          <entry key="json" value="499" />
+          <entry key="js" value="4784" />
+          <entry key="json" value="839" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSON" value="499" />
-          <entry key="JavaScript" value="4052" />
+          <entry key="JSON" value="839" />
+          <entry key="JavaScript" value="4784" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -100,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="229" column="71" selection-start-line="229" selection-start-column="71" selection-end-line="229" selection-end-column="71" />
+            <state relative-caret-position="461">
+              <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -127,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="307" column="49" selection-start-line="307" selection-start-column="49" selection-end-line="307" selection-end-column="49" />
+            <state relative-caret-position="1151">
+              <caret line="416" column="26" selection-start-line="416" selection-start-column="26" selection-end-line="416" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -136,8 +136,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="36428" column="166" lean-forward="true" selection-start-line="36428" selection-start-column="166" selection-end-line="36428" selection-end-column="166" />
+            <state relative-caret-position="279">
+              <caret line="10742" column="52" selection-start-line="10742" selection-start-column="18" selection-end-line="10742" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -146,10 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onRe</find>
-      <find>cili</find>
-      <find>cyli</find>
-      <find>createConn</find>
       <find>exten</find>
       <find>ext</find>
       <find>debug</find>
@@ -174,6 +170,12 @@
       <find>handleXargs</find>
       <find>loop</find>
       <find>inloop</find>
+      <find>textuicommandline(</find>
+      <find>rewriteurl</find>
+      <find>true</find>
+      <find>: true</find>
+      <find>mainframe</find>
+      <find>edu_umd_cs_findbugs_gui2_MainFrame</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,8 +208,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,7 +240,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,17 +287,19 @@
       <workItem from="1533971645481" duration="20949000" />
       <workItem from="1534055590648" duration="4748000" />
       <workItem from="1534062754869" duration="20375000" />
+      <workItem from="1534343172635" duration="3023000" />
+      <workItem from="1534502462194" duration="6202000" />
+      <workItem from="1534582123496" duration="3960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76085000" />
+    <option name="totallyTimeSpent" value="89270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13447703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13945766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -361,22 +365,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="229" column="71" selection-start-line="229" selection-start-column="71" selection-end-line="229" selection-end-column="71" />
+        <state relative-caret-position="461">
+          <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="36428" column="166" lean-forward="true" selection-start-line="36428" selection-start-column="166" selection-end-line="36428" selection-end-column="166" />
+        <state relative-caret-position="279">
+          <caret line="10742" column="52" selection-start-line="10742" selection-start-column="18" selection-end-line="10742" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="307" column="49" selection-start-line="307" selection-start-column="49" selection-end-line="307" selection-end-column="49" />
+        <state relative-caret-position="1151">
+          <caret line="416" column="26" selection-start-line="416" selection-start-column="26" selection-end-line="416" selection-end-column="26" />
         </state>
       </provider>
     </entry>
