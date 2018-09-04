@@ -211,9 +211,10 @@ var model = (function() {
 					entity.accessedBy = accessedBy;					
 					
 					break;
-				
-				case "Method":
+
+                case "Method":
 					var calls = new Array();
+					//If the json object contains loop or condition flag, save it as object.
 					var extendedCalls = new Array();
 
 					entity.calls.forEach(function(callsId){

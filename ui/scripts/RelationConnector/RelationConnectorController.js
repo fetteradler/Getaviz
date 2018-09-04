@@ -191,6 +191,7 @@ var relationConnectorController = function(){
             inCondition = false;
             inLoop = false;
 
+            //Check if json object hold condition or loop flags
 			if(sourceEntity.extendedAccesses) {
 			    var extAccess = sourceEntity.extendedAccesses;
 			    for(var i = 0; i < extAccess.length; i++) {
@@ -305,14 +306,14 @@ var relationConnectorController = function(){
 
         var connectorColor = null;
 
+		//Flag is set when the object connection has a direction.
 		var hasDirection = false;
-
+		//Flag is set whene the connected object has condition.
 		var hasCondition = false;
 
 		var switchClassOrMethod = 0;
-		//var inCondition = false;
-		//var inLoop = false;
 
+		//Set different color for different objects.
 		if(entity.type === "Method") {
 
             switchClassOrMethod = 1;
@@ -336,7 +337,6 @@ var relationConnectorController = function(){
                     hasCondition = true;
                     connectorColor = "#8B0000";
                 } else {
-                   // connectorColor = "0 0 1";
                     connectorColor = "#FF0000";
                 }
 			}
@@ -348,14 +348,12 @@ var relationConnectorController = function(){
                 hasCondition = true;
                 connectorColor = "#8B0000";
             } else {
-                // connectorColor = "0 0 1";
                 connectorColor = "#FF0000";
             }
 		} else if (entity.type === "Class") {
             switchClassOrMethod = 2;
             hasDirection = true;
-                //connectorColor = "#FFD700";
-                connectorColor = "#333333";
+            connectorColor = "#333333";
 		} else {
 		    hasDirection = true;
             connectorColor = "#FF1493";
@@ -379,8 +377,9 @@ var relationConnectorController = function(){
             }
         }
 
+        //Check if hasDirection flag is set.
         if(hasDirection) {
-        	//
+        	//Check which object calls the other object to create the right direction.
 			switch (switchClassOrMethod) {
 				case 1:
                     for(var i = 0; i < relatedCallsEntities.length; i++) {
@@ -414,7 +413,7 @@ var relationConnectorController = function(){
 					break;
             }
         } else {
-
+			//Check if the hasCondition flag was set.
         	if(hasCondition) {
                 transform.appendChild(createConditionLine(sourcePosition, targetPosition, connectorColor, connectorSize, numberCalls));
 			} else {
@@ -772,9 +771,9 @@ var relationConnectorController = function(){
 			
 		return transform;	
 	}
-	
-	
-	
+
+
+    // For connections between a attribute and another object, because they do not have a direction.
 	function createLine(source, target, color, size, numberCalls){
 		//calculate attributes
 		
@@ -827,6 +826,7 @@ var relationConnectorController = function(){
 		return transform;
 	}
 
+	//For objects with a condition like loop or if.
     function createConditionLine(source, target, color, size, numberCalls){
         //calculate attributes
 
@@ -870,16 +870,21 @@ var relationConnectorController = function(){
 
         var numberOfCalls = 0.15 + (0.1 * numberCalls);
 
-        var obj = document.createElement('Box');
-        obj.setAttribute("size", "0.25 1 0.25");
-       // obj.setAttribute("radius", numberOfCalls);
-       // obj.setAttribute("height", "1");
+        var cylinder = document.createElement('Cylinder');
+        cylinder.setAttribute("radius", numberOfCalls);
+        cylinder.setAttribute("height", "1");
 
-        shape.appendChild(obj);
+        shape.appendChild(cylinder);
+
+        /*var obj = document.createElement('Box');
+        obj.setAttribute("size", "0.25 1 0.25");
+
+        shape.appendChild(obj);*/
 
         return transform;
     }
 
+    //For connetcions between objects with a direction like classes and methods.
 	function createArrow(source, target, color, size, numbercalls) {
         //calculate attributes
 
@@ -925,7 +930,6 @@ var relationConnectorController = function(){
         material2.setAttribute("diffuseColor", color);
         appearance2.appendChild(material2);
 
-        //var callsLine = 0.15 + (0.1 * numbercalls);
 		if(numbercalls > 15) {
 			numbercalls = 15;
 		}
@@ -947,61 +951,6 @@ var relationConnectorController = function(){
         return transform;
     }
 
-    function createDottedLine(source, target, color, size, numberCalls){
-        //calculate attributes
-
-        var betrag = (Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) ));
-        var translation = [];
-
-        translation[0] = source[0]+(target[0]-source[0])/2.0;
-        translation[1] = source[1]+(target[1]-source[1])/2.0;
-        translation[2] = source[2]+(target[2]-source[2])/2.0;
-
-        var scale = [];
-        scale[0] = size;
-        scale[1] = betrag;
-        scale[2] = size;
-
-        var rotation = [];
-        rotation[0] = (target[2]-source[2]);
-        rotation[1] = 0;
-        rotation[2] = (-1.0)*(target[0]-source[0]);
-        rotation[3] = Math.acos((target[1] - source[1])/(Math.sqrt( Math.pow(target[0] - source[0], 2) + Math.pow(target[1] - source[1], 2) + Math.pow(target[2] - source[2], 2) )));
-
-        //create element
-        var transform = document.createElement('Transform');
-
-        transform.setAttribute("translation", translation.toString());
-        transform.setAttribute("scale", scale.toString());
-        transform.setAttribute("rotation", rotation.toString());
-
-        var shape = document.createElement('Shape');
-        transform.appendChild(shape);
-
-        var appearance = document.createElement('Appearance');
-        shape.appendChild(appearance);
-        var material = document.createElement('Material');
-        material.setAttribute("diffuseColor", color);
-        appearance.appendChild(material);
-
-        if(numberCalls > 15) {
-            numberCalls = 15;
-        }
-
-        var numberOfCalls = 0.15 + (0.1 * numberCalls);
-
-
-
-        var cylinder = document.createElement('Cylinder');
-        cylinder.setAttribute("radius", numberOfCalls);
-        cylinder.setAttribute("height", "1");
-
-        shape.appendChild(cylinder);
-
-        return transform;
-    }
-
-	
 
 	return {
         initialize		: initialize,

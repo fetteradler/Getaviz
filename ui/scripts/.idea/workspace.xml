@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39afd8bb-b735-44e0-b4ec-4d5618e0bd8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RelationConnector/RelationConnectorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/RelationConnector/RelationConnectorController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,12 +17,13 @@
     <session id="1146935615">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -40,12 +42,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="942" />
+          <entry key="js" value="2026" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="942" />
+          <entry key="JavaScript" value="2026" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -94,20 +96,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="1002" lean-forward="true" selection-start-line="1002" selection-end-line="1002" />
+            <state relative-caret-position="1324">
+              <caret line="193" column="63" selection-start-line="193" selection-start-column="63" selection-end-line="193" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3690">
-              <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
+            <state relative-caret-position="-252">
+              <caret line="216" column="92" selection-start-line="216" selection-start-column="92" selection-end-line="216" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -115,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546420">
+            <state relative-caret-position="283">
               <caret line="36428" column="226" selection-start-line="36428" selection-start-column="222" selection-end-line="36428" selection-end-column="226" />
             </state>
           </provider>
@@ -164,8 +166,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json" />
-        <option value="$PROJECT_DIR$/Model.js" />
         <option value="$PROJECT_DIR$/RelationConnector/RelationConnectorController.js" />
+        <option value="$PROJECT_DIR$/Model.js" />
       </list>
     </option>
   </component>
@@ -187,6 +189,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -214,7 +217,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -265,18 +267,21 @@
       <workItem from="1534502462194" duration="6202000" />
       <workItem from="1534582123496" duration="3960000" />
       <workItem from="1535892956198" duration="3256000" />
-      <workItem from="1535954094139" duration="624000" />
+      <workItem from="1535954094139" duration="3439000" />
+      <workItem from="1535960033773" duration="19000" />
+      <workItem from="1535989049884" duration="1314000" />
+      <workItem from="1536039186911" duration="1611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93795000" />
+    <option name="totallyTimeSpent" value="99554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.255119" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26342005" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -340,24 +345,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="36428" column="226" selection-start-line="36428" selection-start-column="222" selection-end-line="36428" selection-end-column="226" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RelationConnector/RelationConnectorController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="1002" lean-forward="true" selection-start-line="1002" selection-end-line="1002" />
+        <state relative-caret-position="1324">
+          <caret line="193" column="63" selection-start-line="193" selection-start-column="63" selection-end-line="193" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3690">
-          <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../data/City floor findbugs/model/metaData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546420">
-          <caret line="36428" column="226" selection-start-line="36428" selection-start-column="222" selection-end-line="36428" selection-end-column="226" />
+        <state relative-caret-position="-252">
+          <caret line="216" column="92" selection-start-line="216" selection-start-column="92" selection-end-line="216" selection-end-column="92" />
         </state>
       </provider>
     </entry>
